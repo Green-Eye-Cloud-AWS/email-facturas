@@ -1,3 +1,8 @@
+aws ecr create-repository `
+--repository-name facturas `
+--image-scanning-configuration scanOnPush=true `
+--image-tag-mutability MUTABLE
+
 docker build -t facturas .   
 
 aws ecr get-login-password `
@@ -6,11 +11,6 @@ aws ecr get-login-password `
 --username AWS `
 --password-stdin `
 074391503972.dkr.ecr.us-east-1.amazonaws.com 
-
-aws ecr create-repository `
---repository-name facturas `
---image-scanning-configuration scanOnPush=true `
---image-tag-mutability MUTABLE
 
 docker tag facturas:latest 074391503972.dkr.ecr.us-east-1.amazonaws.com/facturas:latest
 
